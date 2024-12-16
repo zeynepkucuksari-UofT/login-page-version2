@@ -6,9 +6,8 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: url('Screenshot 2024-12-11 at 08-40-03 CareCanvas - Clinic View copy blur.png') no-repeat center center fixed; /* Add the background image */
-    background-size: cover; /* Ensure the image covers the entire screen */
-    filter: grayscale(100%); /* Apply grayscale filter */
+    background: url('Screenshot 2024-12-11 at 08-40-03 CareCanvas - Clinic View copy blur.png') no-repeat center center fixed; /* Background image */
+    background-size: cover; /* Ensure it covers the screen */
     position: relative;
 }
 
@@ -22,6 +21,7 @@ body::after {
     height: 100%;
     background: rgba(0, 0, 0, 0.4); /* Semi-transparent black overlay */
     z-index: -1;
+    filter: grayscale(100%); /* Apply grayscale to the background only */
 }
 
 /* Logo styling inside the login container */
@@ -33,6 +33,7 @@ body::after {
     display: block;
     margin-left: 100px; /* Center the logo horizontally */
     margin-right: 60px; /* Center the logo horizontally */
+    filter: none; /* Remove grayscale filter from logo */
 }
 
 /* Container styling for login and OTP forms */
@@ -123,6 +124,7 @@ button {
     position: relative;
     transition: background-color 0.3s ease;
     box-sizing: border-box;  /* Ensures padding is included in the total width/height */
+    filter: none; /* Remove grayscale filter from button */
 }
 
 /* Hover effect on the button */

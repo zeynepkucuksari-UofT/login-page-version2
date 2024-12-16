@@ -27,7 +27,7 @@ body::after {
 }
 
 /* Media Query for Mobile */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     body {
         background-image: url('dashboard_mobile_blur_portrait.png'); /* Background image for mobile */
         background-position: center center;

@@ -170,9 +170,15 @@ button.loading:after {
 
 /* Responsive design for mobile */
 @media (max-width: 480px) {
+    body {
+        background-size: cover; /* Ensure background image still covers screen */
+        background-attachment: scroll; /* Disable fixed background for better performance on mobile */
+    }
+
     .login-container, .otp-container {
         width: 90%;
         padding: 20px;
+        max-width: 320px; /* Ensure it's not too wide on small screens */
     }
 
     h2 {
@@ -182,5 +188,16 @@ button.loading:after {
     input[type="email"], input[type="text"], button {
         font-size: 14px;
         padding: 10px;
+    }
+
+    /* Adjust logo placement for small screens */
+    .caredata-view {
+        margin-left: auto;
+        margin-right: auto;
+        width: 150px; /* Adjust logo width for mobile */
+    }
+
+    .footer-logo {
+        width: 240px; /* Adjust footer logo size */
     }
 }

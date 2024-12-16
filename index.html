@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareCanvas Login</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="https://s3.ca-central-1.amazonaws.com/www.carecanvas.net/physician/favicon-16x16.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="login-container" id="loginContainer">
+        <div class="caredata-view"></div>
+        <!-- Description Section -->
+        <p class="description">
+            If you are registered, enter your email below and you will receive a one-time password to login.
+            If you would like to register, please contact: <a href="mailto:care.canvas@utoronto.ca">care.canvas@utoronto.ca</a>.
+        </p>
+
+        <form id="loginForm">
+            <label for="email">Registered Email:</label>
+            <input type="email" id="email" name="email" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="otp-container" id="otpContainer" style="display:none;">
+        <h2>Enter One Time Password</h2>
+         <!-- OTP Description -->
+        <p class="description">
+            Please check your email inbox for a one-time password to complete your login. 
+            The email should come from <strong>noreply@carecanvas.ca</strong>. 
+            If you don't see it, be sure to <strong>check your spam or junk folder</strong>.
+        </p>
+        <form id="otpForm">
+            <label for="otp">One Time Password:</label>
+            <input type="text" id="otp" name="otp" required>
+            <button type="submit">Verify</button>
+        </form>
+        <p id="timer">Time remaining: 05:00</p>
+    </div>
+    <div class="footer">
+        <img src="https://dfcm.utoronto.ca/sites/default/files/DFCMLogoNavy.png" alt="DFCM Logo" class="footer-logo">
+    </div>
+    <script>
+        const apiBaseUrl = 'https://1ejo3h9c96.execute-api.us-east-2.amazonaws.com/dev';
+
+      document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const submitButton = e.target.querySelector('button'); // Get the submit button
+    
+        // Add loading state to button
+        submitButton.classList.add('loading');
+    
+        try {
+            // Send OTP request
+            const sendOtpResponse = await fetch(`${apiBaseUrl}/send_otp?email_address=${encodeURIComponent(email)}`, {
+                method: 'GET'
+            });
+    
+            const responseText = await sendOtpResponse.text();
+    
+            if (sendOtpResponse.ok && responseText.includes("A verification code is sent")) {
+                // OTP sent successfully, proceed to OTP entry
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('otpContainer').style.display = 'block';
+    
+                // Start the 5-minute countdown
+                startCountdown(5);
+            } else {
+                alert('Failed to send OTP: ' + responseText);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Failed to send OTP: ' + error.message);
+        } finally {
+            // Remove loading state after request completes
+            submitButton.classList.remove('loading');
+        }
+    });
+    
+    document.getElementById('otpForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const otp = document.getElementById('otp').value;
+        const email = document.getElementById('email').value;
+        const verifyButton = e.target.querySelector('button'); // Get the verify button
+    
+        // Add loading state to button
+        verifyButton.classList.add('loading');
+    
+        try {
+            // Verify OTP request
+            const verifyOtpResponse = await fetch(`${apiBaseUrl}/verify_otp?otp=${encodeURIComponent(otp)}&email_address=${encodeURIComponent(email)}`, {
+                method: 'GET'
+            });
+    
+            const response = await verifyOtpResponse.json();
+    
+            if (verifyOtpResponse.ok && response.message === 'Verified') {
+                //alert('OTP Verified Successfully!');
+                window.location.replace(response.dashboard_link);  // Redirect to dashboard
+            } else {
+                alert('Failed to verify OTP: ' + response.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Failed to verify OTP: ' + error.message);
+        } finally {
+            // Remove loading state after request completes
+            verifyButton.classList.remove('loading');
+        }
+    });
+
+
+
+        function startCountdown(minutes) {
+            let time = minutes * 60;
+            const timerElement = document.getElementById('timer');
+            
+            countdown = setInterval(() => {
+                const minutes = Math.floor(time / 60);
+                const seconds = time % 60;
+                timerElement.textContent = `Time remaining: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                time--;
+
+                if (time < 0) {
+                    clearInterval(countdown);
+                    alert('OTP expired! Please try again.');
+                    location.reload();  // Reload the page for a fresh start
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

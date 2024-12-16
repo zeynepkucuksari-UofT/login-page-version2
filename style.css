@@ -7,7 +7,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: url('../images/dashboard-image.jpg') no-repeat center center fixed; /* Replace with your image URL */
+    background: url('Screenshot 2024-12-11 at 08-40-03 CareCanvas - Clinic View copy blur.png') no-repeat center center fixed; /* Replace with your image URL */
     background-size: cover; /* Ensures the image covers the full background */
     filter: grayscale(100%); /* Desaturates the background image */
     position: relative;

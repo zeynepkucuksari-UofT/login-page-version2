@@ -30,6 +30,7 @@ body::after {
 @media (max-width: 768px) {
     body {
         background-image: url('dashboard_mobile_blur_portrait.png'); /* Background image for mobile */
+        background-position: center center;
         background-attachment: scroll; /* Mobile performance optimization */
     }
 }

@@ -6,12 +6,13 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: url('Screenshot 2024-12-11 at 08-39-46 CareCanvas - Clinic View copy blur.png') no-repeat center center fixed; /* Background image */
-    background-size: cover; /* Ensure it covers the screen */
+    background-image: url('PC_version.png'); /* Default background for PC */
+    background-size: cover;
+    background-position: center;
     position: relative;
 }
 
-/* Overlay to ensure content visibility */
+/* Overlay for background desaturation */
 body::after {
     content: '';
     position: absolute;
@@ -19,20 +20,28 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Semi-transparent black overlay */
+    background: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
     z-index: -1;
-    filter: grayscale(100%); /* Apply grayscale to the background only */
+    filter: grayscale(100%); /* Apply grayscale filter to the background */
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+    body {
+        background-image: url('mobile_version.png'); /* Background image for mobile */
+        background-attachment: scroll; /* Mobile performance optimization */
+    }
 }
 
 /* Logo styling inside the login container */
 .caredata-view {
-    width: 190px; /* Adjusted width */
-    height: 36px; /* Adjusted height */
+    width: 190px;
+    height: 36px;
     background: url(https://s3.ca-central-1.amazonaws.com/www.carecanvas.net/physician/i/gfx/sprite.svg) no-repeat 0 0;
-    margin-bottom: 20px; /* Adds spacing below the logo */
+    margin-bottom: 20px;
     display: block;
-    margin-left: 100px; /* Center the logo horizontally */
-    margin-right: 60px; /* Center the logo horizontally */
+    margin-left: 100px;
+    margin-right: 60px;
     filter: none; /* Remove grayscale filter from logo */
 }
 
@@ -64,7 +73,7 @@ h2 {
 }
 
 .description a {
-    color: #2596be; /* Updated blue color */
+    color: #2596be;
     text-decoration: none;
 }
 
@@ -80,7 +89,7 @@ h2 {
 }
 
 .footer-logo {
-    width: 280px; /* Adjust size */
+    width: 280px;
     height: auto;
 }
 
@@ -95,27 +104,27 @@ label {
 /* Input fields styling */
 input[type="email"], input[type="text"] {
     width: 100%;
-    padding: 12px;  /* Adjusted padding for consistent height with the button */
+    padding: 12px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
     color: #333;
     background-color: #f9f9f9;
-    box-sizing: border-box;  /* Ensures padding is included in the total width/height */
+    box-sizing: border-box;
 }
 
 /* Input focus effect */
 input[type="email"]:focus, input[type="text"]:focus {
-    border-color: #2596be; /* Updated blue color */
+    border-color: #2596be;
     outline: none;
 }
 
 /* Button styling */
 button {
     width: 100%;
-    padding: 12px;  /* Same padding as input fields for equal height */
-    background-color: #2596be; /* This color will remain unchanged */
+    padding: 12px;
+    background-color: #2596be;
     color: white;
     border: none;
     border-radius: 4px;
@@ -123,24 +132,24 @@ button {
     cursor: pointer;
     position: relative;
     transition: background-color 0.3s ease;
-    box-sizing: border-box;  /* Ensures padding is included in the total width/height */
+    box-sizing: border-box;
     filter: none; /* Remove grayscale filter from button */
 }
 
 /* Hover effect on the button */
 button:hover {
-    background-color: #1e7ea3; /* Darker shade of #2596be on hover */
+    background-color: #1e7ea3;
 }
 
 /* Active state for the button */
 button:active {
-    background-color: #1b6d90; /* Even darker shade when clicked */
+    background-color: #1b6d90;
 }
 
 /* Button loading indicator */
 button.loading {
     pointer-events: none;
-    background-color: #ddd; /* Grey background while loading */
+    background-color: #ddd;
 }
 
 button.loading:after {
@@ -152,7 +161,7 @@ button.loading:after {
     width: 25px;
     height: 25px;
     border: 4px solid #fff;
-    border-top: 4px solid #2596be; /* Updated spinner to match #2596be */
+    border-top: 4px solid #2596be;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -173,14 +182,14 @@ button.loading:after {
 /* Responsive design for mobile */
 @media (max-width: 480px) {
     body {
-        background-size: cover; /* Ensure background image still covers screen */
-        background-attachment: scroll; /* Disable fixed background for better performance on mobile */
+        background-size: cover; 
+        background-attachment: scroll;
     }
 
     .login-container, .otp-container {
         width: 90%;
         padding: 20px;
-        max-width: 320px; /* Ensure it's not too wide on small screens */
+        max-width: 320px; 
     }
 
     h2 {
@@ -192,14 +201,13 @@ button.loading:after {
         padding: 10px;
     }
 
-    /* Adjust logo placement for small screens */
     .caredata-view {
         margin-left: auto;
         margin-right: auto;
-        width: 150px; /* Adjust logo width for mobile */
+        width: 150px; 
     }
 
     .footer-logo {
-        width: 240px; /* Adjust footer logo size */
+        width: 240px; 
     }
 }

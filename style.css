@@ -6,9 +6,10 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-image: url('Screenshot 2024-12-11 at 08-40-03 CareCanvas - Clinic View copy blur.png'); /* Default background for PC */
-    background-size: cover;
-    background-position: center;
+    background-image: url('Screenshot 2024-12-11 at 08-40-03 CareCanvas - Clinic View copy blur.png'); /* The same image for both desktop and mobile */
+    background-size: cover;  /* Make sure the image covers the entire screen */
+    background-position: center; /* Center the image */
+    background-attachment: fixed; /* Keep the background fixed on scroll (desktop behavior) */
     position: relative;
 }
 
@@ -28,8 +29,9 @@ body::after {
 /* Media Query for Mobile */
 @media (max-width: 768px) {
     body {
-        background-image: url('Screenshot 2024-12-11 at 08-40-03 CareCanvas - Clinic View copy blur.png'); /* Background image for mobile */
-        background-attachment: scroll; /* Mobile performance optimization */
+        background-size: cover; /* Ensure it still covers on mobile */
+        background-position: center center; /* Ensure proper centering for mobile */
+        background-attachment: scroll; /* Change to scroll for mobile performance */
     }
 }
 
@@ -183,7 +185,7 @@ button.loading:after {
 @media (max-width: 480px) {
     body {
         background-size: cover; 
-        background-attachment: scroll;
+        background-attachment: scroll; /* Adjust attachment for mobile */
     }
 
     .login-container, .otp-container {

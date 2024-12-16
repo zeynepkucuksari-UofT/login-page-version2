@@ -6,7 +6,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-image: url('PC_version.png'); /* Default background for PC */
+    background-image: url('Screenshot 2024-12-11 at 08-40-03 CareCanvas - Clinic View copy blur.png'); /* Default background for PC */
     background-size: cover;
     background-position: center;
     position: relative;
@@ -28,7 +28,7 @@ body::after {
 /* Media Query for Mobile */
 @media (max-width: 768px) {
     body {
-        background-image: url('mobile_version.png'); /* Background image for mobile */
+        background-image: url('Screenshot 2024-12-11 at 08-40-03 CareCanvas - Clinic View copy blur.png'); /* Background image for mobile */
         background-attachment: scroll; /* Mobile performance optimization */
     }
 }

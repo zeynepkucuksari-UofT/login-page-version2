@@ -27,11 +27,10 @@ body::after {
 }
 
 /* Media Query for Mobile */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     body {
-        background-size: cover; /* Ensure it still covers on mobile */
-        background-position: center center; /* Ensure proper centering for mobile */
-        background-attachment: scroll; /* Change to scroll for mobile performance */
+        background-image: url('dashboard_mobile_blur_portrait.png'); /* Background image for mobile */
+        background-attachment: scroll; /* Mobile performance optimization */
     }
 }
 

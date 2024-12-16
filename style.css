@@ -30,8 +30,10 @@ body::after {
 @media (max-width: 600px) {
     body {
         background-image: url('dashboard_mobile_blur_portrait.png'); /* Background image for mobile */
-        background-position: center center;
         background-attachment: scroll; /* Mobile performance optimization */
+        background-size: contain; /* Ensure the full image is displayed */
+        background-position: center center; /* Center the image to avoid cropping */
+        background-repeat: no-repeat; /* Prevent repeating the image */
     }
 }
 

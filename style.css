@@ -27,7 +27,7 @@ body::after {
 }
 
 /* Media Query for Mobile */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     body {
         background-size: cover; /* Ensure it still covers on mobile */
         background-position: center center; /* Ensure proper centering for mobile */
